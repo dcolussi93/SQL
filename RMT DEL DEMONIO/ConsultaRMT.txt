@@ -1,0 +1,53 @@
+select 
+	id_template,
+	nombre_template,
+	string_agg( distinct centro_origen, ',' order by centro_origen) as centros
+from (
+	select
+		t7.nombre as centro_origen,
+		t1.id_proceso as id_template,
+		t1.nombre as nombre_template,
+		t2.id_secuencia as secuencia_oper,
+		t2.id_estado_entrada as estado_operacion,
+		t3.descripcion as operacion,
+		t5.nombre as centro_posible
+	from 
+		(
+			select * from sip_hrr_procesos where id_orden_item is null and estado_template = 'A'
+			and id_proceso = 425
+		) t1
+		
+		--(*) Diccionario de operaciones
+		inner join (
+			select * from sip_hrr_proceso_operaciones order by id_proceso
+		) t2 on t2.id_proceso = t1.id_proceso
+		
+		-- (*) Diccionario de operaciones
+		inner join (
+			select * from sip_hrr_operaciones 
+		) t3 on t3.id_operacion = t2.id_operacion
+	
+		-- Tabla de operaciones y centros posibles.
+		inner join (
+			select * from sip_hrr_procesoper_centr_posib
+		) t4 on ( t4.id_proceso = t1.id_proceso ) and (t4.secuencia = t2.id_secuencia)
+	
+		-- Tablas de centros posibles
+		inner join (
+			select * from sip_hrr_centros 
+		) t5 on t5.id_centro = t4.id_centro
+	
+		-- Datos de centros emisores
+		inner join (
+			select * from sip_hrr_proceso_centros_emis 
+		) t6 on t6.id_proceso = t1.id_proceso
+	
+		-- Tabla de centros emisores
+		inner join (
+			select * from sip_hrr_centros
+		) t7 on t7.id_centro = t6.id_centro
+	order by t1.id_proceso, t2.id_secuencia
+) x
+group by 
+ 	id_template,
+ 	nombre_template

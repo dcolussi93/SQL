@@ -1,0 +1,21 @@
+Hola alfonso. las expectativas creo que no son favorables.
+
+La situacion es la siguiente:
+
+Respecto a los mantis
+
+https://ompartners.mantishub.io/view.php?id=35433
+
+La ultima vez que nos hemos contactado con el equipo de OMP les hemos solicitado que nos puedan pasar 
+Esto se puede ver en el siguiente pedido que hemos realizado con ivan https://ompartners.mantishub.io/view.php?id=35433#c158559. Desconozco por el lado de OMP cómo viene la implementacion de este tema.
+
+https://ompartners.mantishub.io/view.php?id=35379
+
+Comentarios ayush
+https://ompartners.mantishub.io/view.php?id=35379#c158558
+
+
+Hay otro mantis creado 
+https://ompartners.mantishub.io/view.php?id=35473
+Honestamente en este punto no se cómo debe extraerse el dato. Se que hay
+

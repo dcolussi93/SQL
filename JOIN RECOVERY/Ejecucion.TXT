@@ -1,0 +1,6 @@
+SELECT omp_owner.nifi_md_tam_legacy_hdr_raw_header_upsert_fn
+
+v_ret = nifi_md_tam_legacy_hdr_raw_upsert_recovery_fn(v_id);
+
+call for joining recovery and standard product routes
+v_id = nifi_md_tam_legacy_hdr_raw_join_recovery_fn(v_id);

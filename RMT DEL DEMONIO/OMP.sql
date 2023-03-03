@@ -1,0 +1,18 @@
+select * from STEELKNOWLEDGEBASE s where STEELKNOWLEDGEBASEID = '26'
+select * from STEELKNOWLEDGEBASE where HEATID = '43128'
+select distinct
+	T1.MATSTOCKID ,
+	T2.TSPRODUCTIONORDER as BATCHORDER,
+	T3.TSPRODUCTIONORDER as DEMANDORDER
+from 
+	(
+		select * from MATACCEPTEDALLOCATION where ADSTAT = 'A'
+		and STATUS = 'Pending'
+	) T1
+	left join (
+		select * from BATCH where ADSTAT = 'A'
+	) T2 on T2.BATCHID = T1.MATSTOCKID
+	left join (
+		select * from DEMAND where ADSTAT = 'A'
+	) T3 on T1.DEMANDID = T3.DEMANDID
+--where T2.TSPRODUCTIONORDER <> T3.TSPRODUCTIONORDER
